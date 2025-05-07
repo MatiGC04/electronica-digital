@@ -1,5 +1,4 @@
 {
     "python.terminal.activateEnvironment": true,
-    "python.pythonPath": "./ed_env/Scripts/python.exe"  // Windows
-    // Linux/Mac: "./ed_env/bin/python"
+    "python.defaultInterpreterPath": "${workspaceFolder}/ed_env/Scripts/python.exe"
 }
