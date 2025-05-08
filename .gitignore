@@ -1,0 +1,13 @@
+# Ignorar todo por defecto
+*
+
+# Permitir archivos .v, .ini y .ipynb
+!*.v
+!*.ini
+!*.ipynb
+
+# No ignorar el archivo .gitignore
+!.gitignore
+
+# Ignorar el entorno virtual llamado ed_env
+ed_env/
