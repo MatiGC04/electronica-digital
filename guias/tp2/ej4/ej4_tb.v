@@ -1,11 +1,6 @@
-// --- PARTE FIJA (SIEMPRE USAR) ---
 `default_nettype none
-// Deshabilita la inferencia automática de tipos de señales para evitar errores comunes.
-
 `timescale 100 ns / 10 ns
-// Define la escala de tiempo para la simulación:
-// - La unidad de tiempo es 100 ns.
-// - La precisión de los retardos es de 10 ns.
+
 
 module ej4_tb();
 // Define el módulo del testbench llamado `eje1_tb`.
@@ -22,6 +17,8 @@ reg A;
 reg B;
 reg C;
 reg D;
+reg E;
+reg F;
 
 wire f;
 wire g;
@@ -31,21 +28,23 @@ wire fb;
 wire gb;
 wire hb;
 
-
-integer n;
-// Variable entera para controlar el bucle de simulación.;
-
+// Como tenemos 6 entradas, el máximo valor que puede tomar es 2^6 - 1 = 63
+// por eso se define un registro de 63 bits
+reg[63:0] n;
 
 
 // Instanciación del módulo bajo prueba
 ej4 UUT(
-    .A(A),  // Conecta la señal `A` del testbench al puerto `A` del módulo.
-    .B(B),  // Conecta la señal `B` del testbench al puerto `B` del módulo.
-    .C(C),  // Conecta la señal `C` del testbench al puerto `C` del módulo.
-    .D(D),  // Conecta la señal `D` del testbench al puerto `D` del módulo.
-    .f(f), // Conecta la señal de salida `X` del módulo al puerto `f` del testbench.
-    .g(g), // Conecta la señal de salida `Y` del módulo al puerto `g` del testbench.
-    .h(h)  // Conecta la señal de salida `Z` del módulo al puerto `h` del testbench.
+    .A(A),
+    .B(B),
+    .C(C),
+    .D(D),
+    .f(f),
+    .g(g),
+    .h(h),
+    .fb(fb),
+    .gb(gb),
+    .hb(hb)
 );
 
 // --- PARTE FIJA (SIEMPRE USAR) ---
@@ -56,8 +55,8 @@ initial begin
 
   $dumpvars(0, ej4_tb);
   // Especifica que se monitorearán todas las variables del módulo `eje1_tb`.
-    
-  $display("Iniciando simulación...");  
+
+  $display("Iniciando simulación..."); 
   reset = 1;
   // Activa la señal de reset al inicio de la simulación.
 
@@ -65,17 +64,17 @@ initial begin
   // Espera 1 unidad de tiempo (100 ns en este caso).
 
   reset = 0;
-  $display("Simulacion en proceso..."); 
-  
+  $display("Simulacion en proceso...");
+
   // Desactiva la señal de reset.
 
 
-  for (n = 0; n < 16; n++) begin
+  for (n = 0; n < 64; n++) begin
 
-    {A, B, C, D} = n;
-    // Asinga el valor binario que toma n, y lo segmenta en un vector de 
+    {A, B, C, D, E, F} = n;
+    // Asinga el valor binario que toma n, y lo segmenta en un vector de
     // 4 bits y va asignando cada uno a A, B, C y D.
-    // Por ejemplo, 
+    // Por ejemplo,
     // Si n = 1, entonces A = 0, B = 0, C = 0, D = 1.
     // Recordar se asigna de derecha a izquierda.
 
