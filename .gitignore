@@ -11,6 +11,7 @@
 
 # No ignorar las carpetas guias y .vscode
 !guias/
+!guias/**
 !.vscode/
 
 # Ignorar el entorno virtual llamado ed_env
