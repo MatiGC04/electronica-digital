@@ -16,3 +16,8 @@
 
 # Ignorar el entorno virtual llamado ed_env
 ed_env/
+
+# Ignorar archivos de simulación y temporales en todas las carpetas
+*.vcd
+*.out
+*.sconsign.dblite

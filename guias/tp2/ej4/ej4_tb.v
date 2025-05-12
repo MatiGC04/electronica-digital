@@ -7,7 +7,7 @@
 // - La unidad de tiempo es 100 ns.
 // - La precisión de los retardos es de 10 ns.
 
-module expression_w_boole_tb();
+module ej4_tb();
 // Define el módulo del testbench llamado `eje1_tb`.
 
 parameter DURATION = 100;
@@ -27,6 +27,10 @@ wire f;
 wire g;
 wire h;
 
+wire fb;
+wire gb;
+wire hb;
+
 
 integer n;
 // Variable entera para controlar el bucle de simulación.;
@@ -34,7 +38,7 @@ integer n;
 
 
 // Instanciación del módulo bajo prueba
-expression_w_boole UUT (
+ej4 UUT(
     .A(A),  // Conecta la señal `A` del testbench al puerto `A` del módulo.
     .B(B),  // Conecta la señal `B` del testbench al puerto `B` del módulo.
     .C(C),  // Conecta la señal `C` del testbench al puerto `C` del módulo.
@@ -46,11 +50,11 @@ expression_w_boole UUT (
 
 // --- PARTE FIJA (SIEMPRE USAR) ---
 initial begin
-  $dumpfile("expression_w_boole_tb.vcd");
+  $dumpfile("ej4_tb.vcd");
   // filepath: c:\Users\Matias\Documents\electronica-digital\guias\tp2\ej3\expression_w_boole_tb.v
   // Crea un archivo de salida llamado `eje2_tb.vcd` para almacenar la traza de la simulación.
 
-  $dumpvars(0, expression_w_boole_tb);
+  $dumpvars(0, ej4_tb);
   // Especifica que se monitorearán todas las variables del módulo `eje1_tb`.
     
   $display("Iniciando simulación...");  
