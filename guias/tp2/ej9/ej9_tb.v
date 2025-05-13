@@ -2,7 +2,7 @@
 `default_nettype none
 `timescale 100 ns / 10 ns
 
-module [nombre_modulo]_tb();
+module ej9_tb();
 
 // FIJO
 parameter DURATION = 100;
@@ -17,26 +17,28 @@ reg B;
 reg C;
 reg D;
 reg E;
-//. . .
+//
 
 wire f;
 wire g;
 wire h;
 wire i;
-
+wire fk;
 reg[k-1:0] n;
 
-[nombre_modulo] UUT (
+ej9 UUT (
     .A(A),
     .B(B),
     .C(C),
     .D(D),
     .E(E),
-    .F(F),
+
     .f(f),
     .g(g),
     .h(h),
-    .i(i)
+    .i(i),
+    //funciones reducidas por karnaugh
+    .fk(fk)
     // ...
 );
 
@@ -51,7 +53,11 @@ initial begin
     // tener en cuenta que el máximo valor que puede tomar es 2^n - 1
     for (integer n = 0; n < N; n++) begin
         // Se ponen las entradas en el orden que se necesiten
-        {A, B, C, D, E} = n;
+        if (n<=7)
+            {A,B,C} = n;
+        else
+            {A, B, C, D, E} = n;
+
         #1;
     end
 
