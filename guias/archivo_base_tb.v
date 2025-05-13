@@ -46,7 +46,7 @@ initial begin
     reset = 0;
     // Simulación mediante for, el vector n depende de la cantidad de entradas
     // tener en cuenta que el máximo valor que puede tomar es 2^n - 1
-    for (integer n = 0; n < 64; n++) begin
+    for (integer n = 0; n <= N; n++) begin
         // Se ponen las entradas en el orden que se necesiten
         {A, B, C, D, E, F} = n;
         #1;
