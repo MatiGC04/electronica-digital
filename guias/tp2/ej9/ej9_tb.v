@@ -24,6 +24,9 @@ wire g;
 wire h;
 wire i;
 wire fk;
+wire gk;
+wire hk;
+wire ik;
 reg[k-1:0] n;
 
 ej9 UUT (
@@ -38,7 +41,10 @@ ej9 UUT (
     .h(h),
     .i(i),
     //funciones reducidas por karnaugh
-    .fk(fk)
+    .fk(fk),
+    .gk(gk),
+    .hk(hk),
+    .ik(ik)
     // ...
 );
 
@@ -51,11 +57,9 @@ initial begin
     reset = 0;
     // Simulación mediante for, el vector n depende de la cantidad de entradas
     // tener en cuenta que el máximo valor que puede tomar es 2^n - 1
-    for (integer n = 0; n < N; n++) begin
+    for (integer n = 0; n <= N; n++) begin
         // Se ponen las entradas en el orden que se necesiten
-        if (n<=7)
-            {A,B,C} = n;
-        else
+        // para g
             {A, B, C, D, E} = n;
 
         #1;
