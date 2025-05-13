@@ -7,6 +7,10 @@ module [nombre_modulo]_tb();
 // FIJO
 parameter DURATION = 100;
 reg reset;
+// Cambiar el tamaño de los registros según la cantidad de entradas
+// N = 2^n - 1
+parameter k = 3; // Cambiar según la cantidad de entradas
+parameter N = (2**k) - 1 ;
 // Agregar los parametrso que se necesiten para la simulación
 reg A;
 reg B;
@@ -17,10 +21,7 @@ reg D;
 wire f;
 wire g;
 wire h;
-// Cambiar el tamaño de los registros según la cantidad de entradas
-// N = 2^n - 1
-k = [nro] ;
-N = (2**k) -1 ;
+
 reg[k-1:0] n;
 
 [nombre_modulo] UUT (
@@ -46,6 +47,7 @@ initial begin
     // Simulación mediante for, el vector n depende de la cantidad de entradas
     // tener en cuenta que el máximo valor que puede tomar es 2^n - 1
     for (integer n = 0; n < 64; n++) begin
+        // Se ponen las entradas en el orden que se necesiten
         {A, B, C, D, E, F} = n;
         #1;
     end
