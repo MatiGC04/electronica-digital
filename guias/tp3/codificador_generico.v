@@ -4,7 +4,7 @@
 //   Codificador decimal a código arbitrario.
 //   Entrada: D (1-de-10, 10 bits, solo un '1' activo a la vez)
 //   Salida: CODE (4 bits, codificado según el esquema deseado)
-// 
+//
 //   Se incluyen ejemplos de:
 //     - Codificación Exceso-3
 //     - Codificación Gray

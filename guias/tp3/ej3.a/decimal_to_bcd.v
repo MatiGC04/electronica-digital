@@ -32,7 +32,7 @@ Uso: Ideal para decodificar señales de entrada decimal a código BCD para su us
 //
 //   Si más de una entrada está activa o ninguna lo está, la salida es indefinida (xxxx).
 // ============================================================================
-module codificador_decimal_a_bcd (
+module cod_decimal_bcd (
     input  [9:0] D,         // Entrada decimal codificada 1-de-10
     output reg [3:0] BCD    // Salida en BCD (número binario de 0 a 9)
 );
