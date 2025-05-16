@@ -33,8 +33,16 @@ initial begin
     #1;
     reset = 0;
     // porque es de 0 a 9
+    /*
     for (integer i = 0; i < 10; i = i + 1) begin
         BN = i;
+        #1;
+        $display("BN = %b --> BCD = %b, Gray = %b, Hamming = %b", BN, BCD, G, H);
+    end
+    */
+    // otra forma de usar el for
+
+    for (BN = 0; BN < 10; BN = BN + 1) begin
         #1;
         $display("BN = %b --> BCD = %b, Gray = %b, Hamming = %b", BN, BCD, G, H);
     end
