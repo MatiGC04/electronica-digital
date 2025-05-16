@@ -63,7 +63,28 @@ module demux_1_4 (
             2'b11: f[3] = D; // Activo la salida 3
             default: f = 4'b0000; // Por defecto, todas las salidas en 0
         endcase
-    end 
+    end
     */
+
+endmodule
+// d)
+module mux_demux_top(
+    input [3:0] D,
+    input [1:0] S,
+    output [3:0] f
+);
+    wire y; // cable entre el mux y el demux
+    // Instancia del multiplexor
+    mux_4_1 UUT_mux (
+        .I(D),
+        .S(S),
+        .F(y)
+    );
+    // Instancia del demultiplexor
+    demux_1_4 UUT_demux (
+        .S(S),
+        .D(y),
+        .f(f)
+    );
 
 endmodule

@@ -7,9 +7,17 @@ module ej5_tb();
     reg [1:0] S;      // Selector
     wire F;           // Salida del mux
 
-    reg D;            // Entrada para el demux
-    wire [3:0] f;     // Salidas del demux
+    reg D;
+    reg [3:0] d;
+    wire [3:0] f;
+    wire [3:0] f_top;
 
+    // Instancia del circuito top
+    mux_demux_top UUT_top (
+        .D(d),
+        .S(S),
+        .f(f_top)
+    );
     // Instancia del multiplexor
     mux_4_1 UUT_mux (
         .I(I),
@@ -24,9 +32,11 @@ module ej5_tb();
         .f(f)
     );
 
+
+
     initial begin
         $dumpfile("ej5_tb.vcd");
-        $dumpvars(0, ej5_tb);
+        $dumpvars(0, I, S, F, D, d, f);
 
         // Prueba del MUX
         $display("Prueba del MUX 4:1");
@@ -50,8 +60,28 @@ module ej5_tb();
             #1;
             $display(": D = %b, S = %b, f = %b", D, S, f);
         end
+        // prueba enunciado d)
+        d = 4'b0110;
 
+        $display("Prueba del circuito mux_demux_top con D = %b", d);
+
+        // Secuencia de S según la gráfica (puedes ajustar los tiempos si lo deseas)
+        S = 2'b00; #1; $display("S = %b, f = %b", S, f_top);
+        S = 2'b01; #1; $display("S = %b, f = %b", S, f_top);
+        S = 2'b10; #1; $display("S = %b, f = %b", S, f_top);
+        S = 2'b11; #1; $display("S = %b, f = %b", S, f_top);
+        S = 2'b11; #1; $display("S = %b, f = %b", S, f_top);
+        S = 2'b11; #1; $display("S = %b, f = %b", S, f_top);
+        S = 2'b01; #1; $display("S = %b, f = %b", S, f_top);
+        S = 2'b00; #1; $display("S = %b, f = %b", S, f_top);
+        S = 2'b10; #1; $display("S = %b, f = %b", S, f_top);
+        S = 2'b01; #1; $display("S = %b, f = %b", S, f_top);
+        S = 2'b11; #1; $display("S = %b, f = %b", S, f_top);
+        S = 2'b00; #1; $display("S = %b, f = %b", S, f_top);
+
+        $display("Fin de la prueba mux_demux_top");
         $finish;
+
     end
 
 endmodule
