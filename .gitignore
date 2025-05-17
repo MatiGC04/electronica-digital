@@ -1,10 +1,12 @@
 # Ignorar todo por defecto
 *
 
-# Permitir archivos .v, .ini, .ipynb y carpetas específicas
+# Permitir archivos .v, .ini, .ipynb, .one, .pdf y carpetas específicas
 !*.v
 !*.ini
 !*.ipynb
+!*.one
+!*.pdf
 
 # No ignorar el archivo .gitignore
 !.gitignore
@@ -21,3 +23,6 @@ ed_env/
 *.vcd
 *.out
 *.sconsign.dblite
+
+
+
