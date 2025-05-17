@@ -50,7 +50,7 @@ always @(*) begin
         aux = 7'b1111111;
     end
     if ((LT == 1'b1) && (BI == 1'b1)) begin
-        aux = 7'b1111111;
+        aux = 7'b0000000;
     end
 
 
