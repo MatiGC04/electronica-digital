@@ -15,6 +15,7 @@
 !guias/
 !guias/**
 !.vscode/
+!parciales viejos/
 
 # Ignorar el entorno virtual llamado ed_env
 ed_env/
