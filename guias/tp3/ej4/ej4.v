@@ -51,23 +51,25 @@ n + p <= 2^p - 1, en este caso n=4, si le damos valores a p llegamos a que
 p=3, entonces tenemos 4 bits de datos y 3 de paridad.
 */
 module bin_2_hamming_pair(
-    input [3:0] BN,
+    input [0:3] BN,
     output reg [6:0] H
 
 );
 
     always @(*) begin
-        if( BN<= 4'd9)begin
+        if( BN< 4'd16)begin
         // Como obtener BN->H
         /*
+        Sea BN = d1 d2 d3 d4
+        pero los indices de BN ES 0 a 3
         p1 = d1 + d2 + d4
         p2 = d1 + d3 + d4
         p3 = d2 + d3 + d4
         entonces defino los p1, p2 y p3 aplicando  xor entre los d_i
         */
-            H[0] = BN[0] ^ BN[1] ^ BN[3];
-            H[1] = BN[0] ^ BN[2] ^ BN[3];
-            H[3] = BN[1] ^ BN[2] ^ BN[3];
+            H[0] = BN[0] ^ BN[1] ^ BN[3]; //p3
+            H[1] = BN[0] ^ BN[2] ^ BN[3]; //p2
+            H[3] = BN[1] ^ BN[2] ^ BN[3]; //p1
 
             H[2] = BN[0]; //d1
             H[4] = BN[1]; //d2
