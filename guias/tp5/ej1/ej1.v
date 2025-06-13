@@ -11,6 +11,7 @@ module FF_JK(
     output reg Q, // estado actual (segun la tabla seria Q(t+1))
     output wire Qn, // complemento
 )
+    initial Q = 0; // Solo para simulación
     // reg salida = 1'b0; //estado default va en el tb
     wire [1:0] entradas = {j,k};
     always @(posedge clock)begin
