@@ -13,8 +13,7 @@ module FF_D(
     output wire Qn;
 );
     always @(posedge clk) begin
-    if (enable)
         Q <= D;
-end
+    end
     assign Qn = ~Q;
 endmodule
