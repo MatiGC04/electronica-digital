@@ -25,5 +25,12 @@ module FF_JK(
             Q <= ~Q;
         }
     end
+
+    /* O con la ecuación lógica
+    always @(posedge clock) begin
+        Q <= (j & ~Q) | (~k & Q);
+    end
+    */
     assign Qn = ~Q;
+
 endmodule
