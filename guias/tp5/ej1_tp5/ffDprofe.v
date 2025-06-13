@@ -3,7 +3,7 @@ module FFD(
     input wire clk,
     input wire reset,
     input wire set,
-    input wire enable,
+    //input wire enable,
     output wire Q, Qn
 
 );
