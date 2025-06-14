@@ -3,7 +3,7 @@ module latch(
     input enable,
     output reg q = 0
 )
-    always @(d) begin
+    always @(*) begin
         if (enable) begin
             q = d; // Si enable está activo, copia d a q
         end
