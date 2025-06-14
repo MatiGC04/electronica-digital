@@ -6,6 +6,8 @@ module R_4B_FFD(
     input wire sclk
 )
     wire [3:0]ignore;
+    genvar i; // siempre q se use generate
+    // integer i; // es para bloques always o test bench
     generate
         for(i=0; i<4; i++)begin
             FF_D ffd(
