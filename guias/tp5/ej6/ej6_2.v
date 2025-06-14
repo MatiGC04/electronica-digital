@@ -21,15 +21,16 @@ EXPLICACIÓN SOBRE LATCH D EN VERILOG:
 
 -------------------------------------------------------------------------------
 */
-
-module R_4B_LatchD(
+`include "latch.v"
+module R_4B_LatchD_2(
     input wire [3:0] B,
     output reg [3:0] sQ,
     input wire enable
 );
-    always @(*) begin
-        if (enable)
-            sQ = B;
-        // else: mantiene el valor anterior (comportamiento de latch)
-    end
+    generate
+        genvar i;
+        for (i = 0; i < 4; i = i + 1) begin : latch_gen
+            latch uu(.d(B[i]), .enable(enable), .q(sQ[i]));
+        end
+    endgenerate
 endmodule
