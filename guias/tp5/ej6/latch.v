@@ -3,7 +3,8 @@ module latch(
     input enable,
     output reg q = 0
 )
-    /// recordar q latch es combinacional y no secuencial por eso
+    /// recordar q latch es secuenciales y asincronico
+    /// en cambio los FF son secuenciales y sincronicos
     // q = n y  no q <= n
     always @(*) begin
         if (enable) begin

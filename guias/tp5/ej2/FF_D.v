@@ -9,8 +9,8 @@ inversor entre las entradas S y R. */
 module FF_D(
     input wire D,
     input wire clk,
-    output reg Q = 0;
-    output wire Qn;
+    output reg Q = 0,
+    output wire Qn
 );
     always @(posedge clk) begin
         Q <= D;
