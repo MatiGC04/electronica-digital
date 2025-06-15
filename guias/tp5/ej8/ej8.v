@@ -8,21 +8,21 @@ module shift_reg_bidir_4b(
 
     // Lógica combinacional para seleccionar el dato de entrada de cada FF_D
     // Según la figura:
-    // Si direccion=0 (derecha):
-    //   - El dato serie 'd' entra por Q3 (LSB)
-    //   - Q2 toma el valor de Q3
-    //   - Q1 toma el valor de Q2
-    //   - Q0 toma el valor de Q1
-    // Si direccion=1 (izquierda):
-    //   - El dato serie 'd' entra por Q0 (MSB)
+    // Si direccion=1 (derecha):
+    //   - El dato serie 'd' entra por Q0
     //   - Q1 toma el valor de Q0
     //   - Q2 toma el valor de Q1
     //   - Q3 toma el valor de Q2
+    // Si direccion=0 (izquierda):
+    //   - El dato serie 'd' entra por Q3
+    //   - Q2 toma el valor de Q3
+    //   - Q1 toma el valor de Q2
+    //   - Q0 toma el valor de Q1
 
-    assign q_next[3] = direccion ? out[2] : d;      // Q3: izquierda toma Q2, derecha toma d
-    assign q_next[2] = direccion ? out[1] : out[3]; // Q2: izquierda toma Q1, derecha toma Q3
-    assign q_next[1] = direccion ? out[0] : out[2]; // Q1: izquierda toma Q0, derecha toma Q2
-    assign q_next[0] = direccion ? d     : out[1];  // Q0: izquierda toma d,  derecha toma Q1
+    assign q_next[3] = direccion ? out[2] :      d;
+    assign q_next[2] = direccion ? out[1] : out[3];
+    assign q_next[1] = direccion ? out[0] : out[2];
+    assign q_next[0] = direccion ? d      : out[1];
 
     // Instanciación de los 4 flip-flops D
     // Cada FF_D toma como entrada el valor calculado por q_next[x]
@@ -30,4 +30,6 @@ module shift_reg_bidir_4b(
     FF_D ff2(.D(q_next[2]), .clk(clk), .Q(out[2]), .Qn()); // Q2
     FF_D ff1(.D(q_next[1]), .clk(clk), .Q(out[1]), .Qn()); // Q1
     FF_D ff0(.D(q_next[0]), .clk(clk), .Q(out[0]), .Qn()); // Q0 (MSB)
+
+
 endmodule
