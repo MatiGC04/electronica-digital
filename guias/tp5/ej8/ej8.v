@@ -2,10 +2,10 @@ module shift_reg_bidir_4b(
     input wire d,         // Entrada serie
     input wire clk,
     input wire direccion, // 0: derecha, 1: izquierda
-    output wire [3:0] out // out[3]=Q3 (LSB), out[0]=Q0 (MSB)
+    output wire [0:3] out // out[3] = Q3(MSB), q[..]= Q... , q[0] = Q0 [LSB]
 );
-    wire [3:0] q_next;
-
+    wire [0:3] q_next;
+    // q_next[3] = MSB
     // Lógica combinacional para seleccionar el dato de entrada de cada FF_D
     // Según la figura:
     // Si direccion=1 (derecha):
@@ -18,11 +18,11 @@ module shift_reg_bidir_4b(
     //   - Q2 toma el valor de Q3
     //   - Q1 toma el valor de Q2
     //   - Q0 toma el valor de Q1
-
-    assign q_next[3] = direccion ? out[2] :      d;
-    assign q_next[2] = direccion ? out[1] : out[3];
-    assign q_next[1] = direccion ? out[0] : out[2];
     assign q_next[0] = direccion ? d      : out[1];
+    assign q_next[1] = direccion ? out[0] : out[2];
+    assign q_next[2] = direccion ? out[1] : out[3];
+    assign q_next[3] = direccion ? out[2] :      d;
+
 
     // Instanciación de los 4 flip-flops D
     // Cada FF_D toma como entrada el valor calculado por q_next[x]
