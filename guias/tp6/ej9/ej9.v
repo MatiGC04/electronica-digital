@@ -1,10 +1,9 @@
 `include "../ej5/ej5_a.v"
 module ej9(
     input wire w,
-    output wire z,
     input wire clock,
     output wire Q1, Q0,
-    output wire Z
+    output wire salida
 )
 
     wire D1, D0;
@@ -21,5 +20,5 @@ module ej9(
     FF_D ffd1(.D(D1), .clk(clock), .Q(Q1), Qn());
     FF_D ffd1(.D(D0), .clk(clock), .Q(Q0), Qn());
 
-    assign Z = Q1 & Q0;
+    assign salida = Q1 & Q0;
 endmodule
